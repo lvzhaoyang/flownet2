@@ -365,6 +365,10 @@ int main(int argc, char** argv) {
   options.write_buffer_size = 268435456;
   leveldb::WriteBatch* batch;
 
+#ifdef Status
+#undef Status // resolve the conflict w.r.t. Xlib
+#endif
+
   // Open db
   LOG(INFO) << "db backend " << db_backend;
   if (db_backend == "leveldb") {  // leveldb
